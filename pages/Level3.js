@@ -29,7 +29,7 @@ import Metatags from "../components/metatags"
 
 import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
-export default function Level2() {
+export default function Level3() {
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
