@@ -46,11 +46,10 @@ export default function Level1() {
 
   let gamestate = "started"
 
-  // let net;
-
+  // Runs once
   async function runHandpose() {
     const net = await handpose.load()
-    _signList()
+    _signList(false)
 
     // window.requestAnimationFrame(loop);
 
@@ -60,8 +59,14 @@ export default function Level1() {
   }
 
   // Used to shuffle the hand image list and store it to "signList"
-  function _signList() {
-    signList = generateSigns()
+  function _signList(random) {
+    // Generate signs
+    if (random) {
+      signList = shuffle(Signpass)
+    }
+    else {
+      signList = Signpass
+    }
   }
 
   function shuffle(a) {
@@ -70,11 +75,6 @@ export default function Level1() {
       ;[a[i], a[j]] = [a[j], a[i]]
     }
     return a
-  }
-
-  function generateSigns() {
-    const password = shuffle(Signpass)
-    return password
   }
 
 
@@ -155,7 +155,7 @@ export default function Level1() {
             estimatedGestures.gestures[maxConfidence].name === "thumbs_up" &&
             gamestate !== "played"
           ) {
-            _signList()
+            _signList(false)
             gamestate = "played"
             document.getElementById("emojimage").classList.add("play")
             document.querySelector(".tutor-text").innerText =
@@ -165,7 +165,7 @@ export default function Level1() {
 
             //looping the sign list
             if (currentSign === signList.length) {
-              _signList()
+              _signList(false)
               currentSign = 0
               return
             }
@@ -187,8 +187,6 @@ export default function Level1() {
             
             //game play state
             
-
-
             if (
               // Check if "signList[currentSign].src.src" is a string literal or string object
               typeof signList[currentSign].src.src === "string" ||

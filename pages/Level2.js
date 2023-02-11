@@ -61,7 +61,7 @@ export default function Level2() {
 
   // Used to shuffle the hand image list and store it to "signList"
   function _signList() {
-    signList = generateSigns()
+    signList = generateSigns(true)
   }
 
   function shuffle(a) {
@@ -72,8 +72,13 @@ export default function Level2() {
     return a
   }
 
-  function generateSigns() {
-    const password = shuffle(Signpass)
+  function generateSigns(random = true) {
+    if (random) {
+      const password = shuffle(Signpass)
+    }
+    else {
+      const password = Signpass
+    }
     return password
   }
 
