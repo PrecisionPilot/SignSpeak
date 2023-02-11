@@ -183,8 +183,6 @@ export default function Level1() {
             }
             
             
-            
-            
             //game play state
             
             if (

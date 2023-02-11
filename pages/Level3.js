@@ -46,11 +46,10 @@ export default function Level3() {
 
   let gamestate = "started"
 
-  // let net;
-
+  // Runs once
   async function runHandpose() {
     const net = await handpose.load()
-    _signList()
+    _signList(false)
 
     // window.requestAnimationFrame(loop);
 
@@ -60,8 +59,14 @@ export default function Level3() {
   }
 
   // Used to shuffle the hand image list and store it to "signList"
-  function _signList() {
-    signList = generateSigns(false)
+  function _signList(random) {
+    // Generate signs
+    if (random) {
+      signList = shuffle(Signpass)
+    }
+    else {
+      signList = Signpass
+    }
   }
 
   function shuffle(a) {
@@ -70,16 +75,6 @@ export default function Level3() {
       ;[a[i], a[j]] = [a[j], a[i]]
     }
     return a
-  }
-
-  function generateSigns(random = true) {
-    if (random) {
-      const password = shuffle(Signpass)
-    }
-    else {
-      const password = Signpass
-    }
-    return password
   }
 
 
@@ -160,7 +155,7 @@ export default function Level3() {
             estimatedGestures.gestures[maxConfidence].name === "thumbs_up" &&
             gamestate !== "played"
           ) {
-            _signList()
+            _signList(false)
             gamestate = "played"
             document.getElementById("emojimage").classList.add("play")
             document.querySelector(".tutor-text").innerText =
@@ -170,7 +165,7 @@ export default function Level3() {
 
             //looping the sign list
             if (currentSign === signList.length) {
-              _signList()
+              _signList(false)
               currentSign = 0
               return
             }
@@ -188,12 +183,8 @@ export default function Level3() {
             }
             
             
-            
-            
             //game play state
             
-
-
             if (
               // Check if "signList[currentSign].src.src" is a string literal or string object
               typeof signList[currentSign].src.src === "string" ||
