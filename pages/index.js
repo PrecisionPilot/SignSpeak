@@ -37,6 +37,10 @@ export default function Home() {
 
   const [sign, setSign] = useState(null)
 
+  let word = ""
+  let freeze = ""
+  let timer = 0;
+
   let signList = []
   let currentSign = 0
 
@@ -166,8 +170,25 @@ export default function Home() {
               return
             }
 
+
+
+            //test making words
+            timer++;
+            if(estimatedGestures.gestures[maxConfidence].name!=freeze && timer>10){
+              timer = 0;
+              freeze = estimatedGestures.gestures[maxConfidence].name;
+              word += estimatedGestures.gestures[maxConfidence].name;
+              console.log(word)
+              //if(word matches a word, add a space)
+            }
+            
+            
+            
+            
             //game play state
             
+
+
             if (
               // Check if "signList[currentSign].src.src" is a string literal or string object
               typeof signList[currentSign].src.src === "string" ||

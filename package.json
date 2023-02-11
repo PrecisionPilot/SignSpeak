@@ -14,12 +14,13 @@
     "@tensorflow/tfjs-backend-webgl": "^2.4.0",
     "fingerpose": "^0.0.2",
     "framer-motion": "^3.1.1",
-    "prop-types": "^15.7.2",
     "next": "latest",
+    "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.1.0",
+    "react-router-dom": "^6.8.1",
     "react-webcam": "^5.2.2"
   },
   "devDependencies": {
