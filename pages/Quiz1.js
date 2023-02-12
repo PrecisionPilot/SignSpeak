@@ -168,23 +168,16 @@ export default function Level1(props) {
             document.querySelector("#app-title").innerText = ""
 
             //looping the sign list
-            if (currentSign === signList.length) {              
-              if (!isQuiz) {
-                
-                // Start the quiz
-                _signList(true)
-                // Restart the list without letters
-                setIsQuiz(true)
-                currentSign = 0
-                //document.querySelector(".tutor-text").innerText = "Congratulations, your completed your first lesson!"
-                console.log("Lesson done")
-                alert("Congratulations, your completed your first lesson!")
-              }
-              else {
-                // Quiz completed
-                console.log("Quiz done")
-                window.open("/Level2")
-              }
+            if (currentSign === signList.length) {
+              // Start the quiz
+              _signList(true)
+              // Restart the list without letters
+              currentSign = 0
+              //document.querySelector(".tutor-text").innerText = "Congratulations, your completed your first lesson!"
+              console.log("Lesson done")
+              alert("Congratulations, your completed your first lesson!")
+              // Open the quiz
+              window.open(window.location.origin + "/Level2")
               return
             }
 
@@ -207,14 +200,9 @@ export default function Level1(props) {
               signList[currentSign].src.src instanceof String
             ) {
               // Change the image of the sign emoji using "signList[currentSign].src.src"
-              if (!isQuiz) {
-                document.getElementById("emojimage").setAttribute("src", signList[currentSign].src.src)
-              }
-              else {
-                setTextImage(signList[currentSign].alt)
-                console.log("signList: " + signList[currentSign].alt)
-                console.log("Hello world")
-              }
+              setTextImage(signList[currentSign].alt)
+              console.log("signList: " + signList[currentSign].alt)
+              console.log("Hello world")
               // If the detected gestures is the same as the displayed sign image
               if (
                 signList[currentSign].alt ===

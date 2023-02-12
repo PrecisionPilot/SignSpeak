@@ -31,29 +31,12 @@ import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
 export default function Level1(props) {
 
-  const [isQuiz, setIsQuiz] = useState(false)
-  useEffect(() => {
-    if (isQuiz) {
-      // Set the emoji invisible to start using the text
-      document.getElementById("emojimage").style.visibility = "hidden";
-      document.getElementById("textimage").style.visibility = "visible";
-      console.log("is Quiz")
-    }
-    else {
-      document.getElementById("emojimage").style.visibility = "visible";
-      document.getElementById("textimage").style.visibility = "hidden";
-      console.log("is not Quiz")
-    }
-  }, [isQuiz])
-
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
   const [camState, setCamState] = useState("on")
 
   const [sign, setSign] = useState(null)
-
-  const [textImage, setTextImage] = useState("")
 
   let word = ""
   let freeze = ""
@@ -183,23 +166,13 @@ export default function Level1(props) {
             document.querySelector("#app-title").innerText = ""
 
             //looping the sign list
-            if (currentSign === signList.length) {              
-              if (!isQuiz) {
-                
-                // Start the quiz
-                _signList(true)
-                // Restart the list without letters
-                setIsQuiz(true)
-                currentSign = 0
-                //document.querySelector(".tutor-text").innerText = "Congratulations, your completed your first lesson!"
-                console.log("Lesson done")
-                alert("Congratulations, your completed your first lesson!")
-              }
-              else {
-                // Quiz completed
-                console.log("Quiz done")
-                window.open("/Level2")
-              }
+            if (currentSign === signList.length) {
+              currentSign = 0
+              //document.querySelector(".tutor-text").innerText = "Congratulations, your completed your first lesson!"
+              console.log("Lesson done")
+              alert("Congratulations, your completed your first lesson!")
+              // Open the quiz
+              window.open(window.location.origin + "/Quiz1")
               return
             }
 
@@ -222,14 +195,7 @@ export default function Level1(props) {
               signList[currentSign].src.src instanceof String
             ) {
               // Change the image of the sign emoji using "signList[currentSign].src.src"
-              if (!isQuiz) {
-                document.getElementById("emojimage").setAttribute("src", signList[currentSign].src.src)
-              }
-              else {
-                setTextImage(signList[currentSign].alt)
-                console.log("signList: " + signList[currentSign].alt)
-                console.log("Hello world")
-              }
+              document.getElementById("emojimage").setAttribute("src", signList[currentSign].src.src)
               // If the detected gestures is the same as the displayed sign image
               if (
                 signList[currentSign].alt ===
@@ -342,7 +308,6 @@ export default function Level1(props) {
           ></Box>
 
           <Image h="150px" objectFit="cover" id="emojimage" />
-          <h1 id="textimage" style={{position: "relative", top: "-5rem", zIndex: "5", color: "orange", fontSize: "38px", fontWeight: "bold", }}>{ textImage }</h1>
           {/* <pre className="pose-data" color="white" style={{position: 'fixed', top: '150px', left: '10px'}} >Pose data</pre> */}
         </Container>
       </Box>
