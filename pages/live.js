@@ -136,8 +136,7 @@ export default function Live() {
         // document.querySelector('.pose-data').innerHTML =JSON.stringify(estimatedGestures.poseData, null, 2);
 
         if (gamestate === "started") {
-          document.querySelector("#app-title").innerText =
-            "Make a 👍 gesture with your hand to start"
+          document.querySelector("#app-title").innerText = ""
         }
 
         if (
@@ -270,7 +269,7 @@ export default function Live() {
             color="white"
             textAlign="center"
           >
-            🧙‍♀️ Loading the Magic 🧙‍♂️
+            Live translation Model
           </Heading>
 
           
@@ -328,7 +327,7 @@ export default function Live() {
           ></Box>
 
 
-          <Image h="150px" objectFit="cover" id="emojimage"    />
+          <Image h="150px" objectFit="cover" id="emojimage" style={{visibility: "hidden"}}   />
 
 
           {/* <pre className="pose-data" color="white" style={{position: 'fixed', top: '150px', left: '10px'}} >Pose data</pre> */}
@@ -349,19 +348,6 @@ export default function Live() {
                 
             </Heading>
         </Container>
-          <Button
-            leftIcon={
-              camState === "on" ? (
-                <RiCameraFill size={20} />
-              ) : (
-                <RiCameraOffFill size={20} />
-              )
-            }
-            onClick={switchCameraState}
-            colorScheme="orange"
-          >
-            Camera
-          </Button>
 
 
         </Stack>
