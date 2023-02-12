@@ -9,13 +9,13 @@ export default function Home() {
     let currentLevel
 
     if (level === 1) {
-        currentLevel = <Level1 />
+        currentLevel = <Level1 level={level} setLevel={setLevel} />
     }
     else if (level === 2) {
-        currentLevel = <Level2 />
+        currentLevel = <Level2 level={level} setLevel={setLevel} />
     }
     else if (level === 3) {
-        currentLevel = <Level3 />
+        currentLevel = <Level3 level={level} setLevel={setLevel} />
     }
 
     return (

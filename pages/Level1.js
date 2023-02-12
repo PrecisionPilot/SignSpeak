@@ -29,13 +29,32 @@ import Metatags from "../components/metatags"
 
 import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
-export default function Level1() {
+export default function Level1(props) {
+  const {level, setLevel} = props
+
+  const [isQuiz, setIsQuiz] = useState(false)
+  useEffect(() => {
+    if (isQuiz) {
+      // Set the emoji invisible to start using the text
+      document.getElementById("emojimage").style.visibility = "hidden";
+      document.getElementById("textimage").style.visibility = "visible";
+      console.log("is Quiz")
+    }
+    else {
+      document.getElementById("emojimage").style.visibility = "visible";
+      document.getElementById("textimage").style.visibility = "hidden";
+      console.log("is not Quiz")
+    }
+  }, [isQuiz])
+
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
   const [camState, setCamState] = useState("on")
 
   const [sign, setSign] = useState(null)
+
+  const [textImage, setTextImage] = useState("Hello world")
 
   let word = ""
   let freeze = ""
@@ -159,19 +178,31 @@ export default function Level1() {
             _signList(false)
             gamestate = "played"
             document.getElementById("emojimage").classList.add("play")
-            document.querySelector(".tutor-text").innerText =
-              "make a hand gesture based on letter shown below"
+            document.querySelector(".tutor-text").innerText = "make a hand gesture based on letter shown below"
           } else if (gamestate === "played") {
+            // While the game is playing
             document.querySelector("#app-title").innerText = ""
 
             //looping the sign list
-            if (currentSign === signList.length) {
-              _signList(false)
-              currentSign = 0
+            if (currentSign === signList.length) {              
+              if (!isQuiz) {
+                
+                // Start the quiz
+                _signList(true)
+                // Restart the list without letters
+                setIsQuiz(true)
+                currentSign = 0
+                //document.querySelector(".tutor-text").innerText = "Congratulations, your completed your first lesson!"
+                console.log("Lesson done")
+                alert("Congratulations, your completed your first lesson!")
+              }
+              else {
+                // Quiz completed
+                setLevel(level + 1)
+                console.log("Quiz done")
+              }
               return
             }
-
-
 
             //test making words
             timer++;
@@ -192,7 +223,14 @@ export default function Level1() {
               signList[currentSign].src.src instanceof String
             ) {
               // Change the image of the sign emoji using "signList[currentSign].src.src"
-              document.getElementById("emojimage").setAttribute("src", signList[currentSign].src.src)
+              if (!isQuiz) {
+                document.getElementById("emojimage").setAttribute("src", signList[currentSign].src.src)
+              }
+              else {
+                setTextImage(signList[currentSign].alt)
+                console.log("signList: " + signList[currentSign].alt)
+                console.log("Hello world")
+              }
               // If the detected gestures is the same as the displayed sign image
               if (
                 signList[currentSign].alt ===
@@ -305,6 +343,7 @@ export default function Level1() {
           ></Box>
 
           <Image h="150px" objectFit="cover" id="emojimage" />
+          <h1 id="textimage">{ textImage }</h1>
           {/* <pre className="pose-data" color="white" style={{position: 'fixed', top: '150px', left: '10px'}} >Pose data</pre> */}
         </Container>
 
