@@ -29,7 +29,9 @@ import Metatags from "../components/metatags"
 
 import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
-export default function Level3() {
+export default function Level3(props) {
+  const {level, setLevel} = props
+  
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
@@ -166,8 +168,8 @@ export default function Level3() {
 
             //looping the sign list
             if (currentSign === signList.length) {
-              _signList(false)
-              currentSign = 0
+              console.log("Success!")
+              setLevel(level + 1)
               return
             }
 
