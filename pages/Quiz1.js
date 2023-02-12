@@ -259,7 +259,7 @@ export default function Level1(props) {
             color="white"
             textAlign="center"
           >
-            🧙‍♀️ Loading the Magic 🧙‍♂️
+            📝 Loading Your Quiz 📝
           </Heading>
 
           <Box id="webcam-container">

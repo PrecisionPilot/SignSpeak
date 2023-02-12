@@ -5,6 +5,7 @@ import Webcam from "react-webcam"
 import { drawHand } from "../components/handposeutil"
 import * as fp from "fingerpose"
 import Handsigns from "../components/handsigns"
+import { useRouter } from 'next/router'
 
 import {
   Text,  
@@ -31,6 +32,8 @@ import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
 export default function Level1(props) {
 
+  const router = useRouter()
+
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
@@ -43,7 +46,7 @@ export default function Level1(props) {
   let timer = 0;
 
   let signList = []
-  let currentSign = 5
+  let currentSign = 0
 
   let gamestate = "started"
 
@@ -172,7 +175,7 @@ export default function Level1(props) {
               console.log("Lesson done")
               alert("Congratulations, your completed your first lesson!")
               // Open the quiz
-              window.open(window.location.origin + "/Quiz1")
+              router.push("/Quiz1")
               return
             }
 
