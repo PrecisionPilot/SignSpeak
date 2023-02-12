@@ -2,7 +2,8 @@ import { useState } from "react";
 import Level1 from "./level1";
 import Level2 from "./Level2";
 import Level3 from "./Level3";
-import live from "./live";
+import Live from "./live";
+import All from "./All";
 import {  BrowserRouter as Router, Route, Routes, Switch, useNavigate } from 'react-router-dom';
 
 export default function Home() {
@@ -25,8 +26,11 @@ export default function Home() {
             { currentLevel }
           <Router>
             <Routes> 
+              <Route path="/">
+                <All/>
+              </Route>
               <Route path="/live">
-                <live />
+                <Live />
               </Route>
             </Routes>
           </Router>

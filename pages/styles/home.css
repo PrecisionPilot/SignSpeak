@@ -1,0 +1,316 @@
+/* About*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+
+
+.about-wallpaper {
+    position: static;
+    text-align: center;
+    padding: 20rem;
+    width: 100%;
+    background-color: #80c7ef;
+    height: 100vh;
+}
+
+.about-picture {
+    margin-left: -400px;
+    margin-top: -200px;
+    max-width: 100%;
+}
+
+.text {
+    position: static;
+    margin-left: 275px;
+    margin-top: -560px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2vw;
+    color: #1B3159;
+}
+
+.text2 {
+    position: static;
+    margin-left: 173px;
+    margin-top: 40px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.4vw;
+    color: #1B3159;
+}
+
+.text3 {
+    width: 90%;
+    text-align: left;
+    position: static;
+    margin-left: 365px;
+    margin-top: 60px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.4vw;
+    color: #1B3159 ;
+}
+
+.buttons{
+    position: static;
+    padding-top: 13px;
+    margin-top: 35px;
+    margin-left: 60px;
+    width: 60px;
+    height: 60px;
+    background: #c18ef1;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.buttons:hover{
+    position: static;
+    transform: translate(-6px, -6px);
+    background-color: rgba(145, 6, 238, 0.5);
+    box-shadow: 2px 2px #261491;
+}
+
+/* About*/
+
+.buttons{
+    position: static;
+    padding-top: 9px;
+    margin-top: 40px;
+    margin-left: -130px;
+    width: 50px;
+    height: 50px;
+    background: #5d88c8;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.buttons:hover{
+    position: static;
+    transform: translate(-6px, -6px);
+    background-color: #2a4b7c;
+    box-shadow: 2px 2px #3762a4;
+}
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    margin-left: 50%;
+    font-family: "Montserrat", sans-serif;
+    font-size: 100%;
+    width: 40%; /* Full width */
+    padding: 30px; /* Some padding */
+    border-radius: 15px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-bottom: 25px; /* Bottom margin */
+    resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+    background-color: #ffffff;
+    border-color: #2a4b7c;
+    border-width: 3px;
+    color: #1B3159;
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    margin-left: 50%;
+    background-color: #1B3159;
+    color: white;
+    padding: 12px 50px;
+    border: none;
+    border-radius: 2100px;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+}
+
+/* When moving the mouse over the submit button, add a darker blue color */
+input[type=submit]:hover {
+    background-color: #2a4b7c ;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+    background-color: #aac1fd;
+    padding-top: 08em;
+    padding-bottom: 24em;
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+.contact-text {
+    padding-left: 100px;
+    margin-top: -440px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.4vw;
+    color: #1B3159;
+    width: 100%;
+}
+
+.text4 {
+    margin-top: 10px;
+    width: 35%;
+    text-align: left;
+    position: static;
+    margin-left: 100px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.4vw;
+    color: #E6E6E6 ;
+}
+
+.footer {
+    background: #80c7ef;
+    color: var(--clr-accent);
+    text-align: center;
+    padding: 2.5em 0;
+    font-size: 10px;
+}
+
+.footer a {
+    color: #261491;
+    text-decoration: none;
+    padding-left: 40px;
+    margin-top: 200px;
+}
+
+
+/* Home */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
+.logo {
+    margin-left: 360px;
+    margin-top: -230px;
+    max-width: 100%;
+}
+
+.home {
+    position: static;
+    padding-top: 100px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 2.5vw;
+    width: 100%;
+    height: 100vh;
+    color: #1B3159;
+    background-color:hsla(212,88%,82%,1);
+    background-image:
+            radial-gradient(at 83% 95%, hsla(200,76%,70%,1) 0px, transparent 50%),
+            radial-gradient(at 40% 47%, hsla(264,73%,67%,1) 0px, transparent 50%),
+            radial-gradient(at 85% 1%, hsla(304,81%,73%,1) 0px, transparent 50%);
+}
+
+.shortlogo {
+    margin-top: -945px;
+    padding-left: -900px;
+}
+
+.words {
+    position: static;
+    margin-left: 170px;
+    margin-top: -80px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2vw;
+    color: #1B3159;
+}
+
+.words2 {
+    position: static;
+    margin-left: 983px;
+    margin-top: 449px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2vw;
+    color: #1B3159;
+
+}
+
+/* layout */
+
+@import url('https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+::-moz-selection { /* highlights :)*/
+    background: #268ed3;
+}
+
+::selection {
+    background: #268ed3;
+}
+/* layout */
+
+
+img {
+    border-radius: 8px;;
+}
+
+/* navbar*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 05%;
+    background: #a9cefa; /* Fallback color */
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+}
+
+.nav__links a,
+.cta,
+.overlay__content a {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2vw;
+    font-weight: 100;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.nav__links li {
+    padding: 0px 20px;
+}
+
+.nav__links li a:hover {
+    color: #1B3159;
+    padding-bottom: 05px;
+    border-bottom: 1px solid #1B3159;
+}
+
+.cta {
+    margin-left: 20px;
+    padding: 10px 23px;
+    background-color: #1B3159;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.cta:hover {
+    background-color: #2a4b7c;
+    transform: translate(0, -6px);
+    box-shadow: 10px -10px 25px 0 rgba(245, 4, 157, 0.65),
+    -10px 10px 25px 0 rgba(47, 189, 252, 0.75);
+}
+
