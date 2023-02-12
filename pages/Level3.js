@@ -67,6 +67,7 @@ export default function Level3() {
     else {
       signList = Signpass
     }
+    signList = signList.slice(17, 26)
   }
 
   function shuffle(a) {
