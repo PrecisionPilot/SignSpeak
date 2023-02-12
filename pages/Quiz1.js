@@ -31,21 +31,6 @@ import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
 export default function Level1(props) {
 
-  const [isQuiz, setIsQuiz] = useState(false)
-  useEffect(() => {
-    if (isQuiz) {
-      // Set the emoji invisible to start using the text
-      document.getElementById("emojimage").style.visibility = "hidden";
-      document.getElementById("textimage").style.visibility = "visible";
-      console.log("is Quiz")
-    }
-    else {
-      document.getElementById("emojimage").style.visibility = "visible";
-      document.getElementById("textimage").style.visibility = "hidden";
-      console.log("is not Quiz")
-    }
-  }, [isQuiz])
-
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
@@ -67,7 +52,7 @@ export default function Level1(props) {
   // Runs once
   async function runHandpose() {
     const net = await handpose.load()
-    _signList(false)
+    _signList(true)
 
     // window.requestAnimationFrame(loop);
 
@@ -174,7 +159,7 @@ export default function Level1(props) {
             estimatedGestures.gestures[maxConfidence].name === "thumbs_up" &&
             gamestate !== "played"
           ) {
-            _signList(false)
+            _signList(true)
             gamestate = "played"
             document.getElementById("emojimage").classList.add("play")
             document.querySelector(".tutor-text").innerText = "make a hand gesture based on letter shown below"
@@ -341,7 +326,7 @@ export default function Level1(props) {
             }}
           ></Box>
 
-          <Image h="150px" objectFit="cover" id="emojimage" />
+          <Image h="150px" objectFit="cover" id="emojimage" style={{visibility: "hidden"}} />
           <h1 id="textimage" style={{position: "relative", top: "-5rem", zIndex: "5", color: "orange", fontSize: "38px", fontWeight: "bold", }}>{ textImage }</h1>
           {/* <pre className="pose-data" color="white" style={{position: 'fixed', top: '150px', left: '10px'}} >Pose data</pre> */}
         </Container>

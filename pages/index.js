@@ -40,10 +40,10 @@ export default function All(props) {
                     <p> Click the book to start learning and click the tv to see Sign Speak in action!</p>
                 </div>
 
-                <a className="buttons" href="/Level1" target="_blank">
+                <a className="buttons" href="/Level1">
                     <ion-icon name="book-outline" size="large"></ion-icon>
                 </a>
-                <a className="buttons" href="/Live" target="_blank">
+                <a className="buttons" href="/Live">
                     <ion-icon name="tv-outline" size="large"></ion-icon>
                 </a>
                 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" ></script>
