@@ -7,7 +7,7 @@ import * as fp from "fingerpose"
 import Handsigns from "../components/handsigns"
 
 import {
-  Text,  
+  Text,
   Heading,
   Button,
   Image,
@@ -29,7 +29,7 @@ import Metatags from "../components/metatags"
 
 import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
-export default function Level1() {
+export default function Level3() {
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
@@ -40,11 +40,16 @@ export default function Level1() {
   let word = ""
   let freeze = ""
   let timer = 0;
+  let realtimer = 0;
+
+  let flag = false;
 
   let signList = []
   let currentSign = 0
 
   let gamestate = "started"
+
+
 
   // Runs once
   async function runHandpose() {
@@ -102,6 +107,8 @@ export default function Level1() {
       const hand = await net.estimateHands(video)
 
       if (hand.length > 0) {
+        realtimer = 0;
+        flag = true;
         //loading the fingerpose model
         const GE = new fp.GestureEstimator([
           fp.Gestures.ThumbsUpGesture,
@@ -179,8 +186,19 @@ export default function Level1() {
               freeze = estimatedGestures.gestures[maxConfidence].name;
               word += estimatedGestures.gestures[maxConfidence].name;
               console.log(word)
+              /*
+              async () {
+                const url = 'https://api.bing.microsoft.com/'
+                
+                const [word, updatedword] = useState([{}]);
+                const response = await fetch('${url}').then.
+              }
+              */
               //if(word matches a word, add a space)
             }
+
+
+            
             
             
             //game play state
@@ -204,6 +222,15 @@ export default function Level1() {
           } else if (gamestate === "finished") {
             return
           }
+        }
+      } else{
+        console.log('no hands')
+        realtimer++;
+        if((realtimer%5==0)&&flag){
+            flag=false;
+            realtimer = 0;
+            console.log('space')
+            word+=" "; 
         }
       }
       // Draw hand lines

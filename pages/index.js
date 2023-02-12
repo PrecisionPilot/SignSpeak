@@ -2,6 +2,8 @@ import { useState } from "react";
 import Level1 from "./level1";
 import Level2 from "./Level2";
 import Level3 from "./Level3";
+import live from "./live";
+import {  BrowserRouter as Router, Route, Routes, Switch, useNavigate } from 'react-router-dom';
 
 export default function Home() {
     const [level, setLevel] = useState(1);
@@ -17,10 +19,17 @@ export default function Home() {
     else if (level === 3) {
         currentLevel = <Level3 />
     }
-
+ 
     return (
         <div>
             { currentLevel }
+          <Router>
+            <Routes> 
+              <Route path="/live">
+                <live />
+              </Route>
+            </Routes>
+          </Router>
         </div>
     )
 }

@@ -7,7 +7,7 @@ import * as fp from "fingerpose"
 import Handsigns from "../components/handsigns"
 
 import {
-  Text,  
+  Text,
   Heading,
   Button,
   Image,
@@ -20,7 +20,6 @@ import {
 
 import { Signimage, Signpass } from "../components/handimage"
 
-import About from "../components/about"
 import Metatags from "../components/metatags"
 
 // import "../styles/App.css"
@@ -29,7 +28,7 @@ import Metatags from "../components/metatags"
 
 import { RiCameraFill, RiCameraOffFill } from "react-icons/ri"
 
-export default function Level1() {
+export default function Level3() {
   const webcamRef = useRef(null)
   const canvasRef = useRef(null)
 
@@ -37,14 +36,21 @@ export default function Level1() {
 
   const [sign, setSign] = useState(null)
 
-  let word = ""
+
+  const [word, addWord] = useState('')
+  let testWord = ""
   let freeze = ""
   let timer = 0;
+  let realtimer = 0;
+
+  let flag = false;
 
   let signList = []
   let currentSign = 0
 
   let gamestate = "started"
+
+
 
   // Runs once
   async function runHandpose() {
@@ -55,7 +61,7 @@ export default function Level1() {
 
     setInterval(() => {
       detect(net)
-    }, 150)
+    }, 100)
   }
 
   // Used to shuffle the hand image list and store it to "signList"
@@ -68,15 +74,6 @@ export default function Level1() {
       signList = Signpass
     }
   }
-
-  function shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[a[i], a[j]] = [a[j], a[i]]
-    }
-    return a
-  }
-
 
   async function detect(net) {
     // Check data is available
@@ -102,6 +99,8 @@ export default function Level1() {
       const hand = await net.estimateHands(video)
 
       if (hand.length > 0) {
+        realtimer = 0;
+        flag = true;
         //loading the fingerpose model
         const GE = new fp.GestureEstimator([
           fp.Gestures.ThumbsUpGesture,
@@ -177,10 +176,23 @@ export default function Level1() {
             if(estimatedGestures.gestures[maxConfidence].name!=freeze && timer>10){
               timer = 0;
               freeze = estimatedGestures.gestures[maxConfidence].name;
-              word += estimatedGestures.gestures[maxConfidence].name;
-              console.log(word)
+              //addWord(word+estimatedGestures.gestures[maxConfidence].name)
+              testWord +=estimatedGestures.gestures[maxConfidence].name;
+              addWord(testWord)
+              console.log(testWord) 
+              /*
+              async () {
+                const url = 'https://api.bing.microsoft.com/'
+                
+                const [word, updatedword] = useState([{}]);
+                const response = await fetch('${url}').then.
+              }
+              */
               //if(word matches a word, add a space)
             }
+
+
+            
             
             
             //game play state
@@ -204,6 +216,16 @@ export default function Level1() {
           } else if (gamestate === "finished") {
             return
           }
+        }
+      } else{
+        console.log('no hands')
+        realtimer++;
+        if((realtimer%5==0)&&flag){
+            flag=false;
+            realtimer = 0;
+            console.log('space')
+            testWord += " "
+            addWord(testWord); 
         }
       }
       // Draw hand lines
@@ -251,6 +273,8 @@ export default function Level1() {
             🧙‍♀️ Loading the Magic 🧙‍♂️
           </Heading>
 
+          
+
           <Box id="webcam-container">
             {/* The camera background */}
             {camState === "on" ? (
@@ -294,7 +318,7 @@ export default function Level1() {
           <canvas id="gesture-canvas" ref={canvasRef} style={{}} />
 
           <Box
-            id="singmoji"
+            id="singmojix"
             style={{
               zIndex: 9,
               position: "fixed",
@@ -303,11 +327,28 @@ export default function Level1() {
             }}
           ></Box>
 
-          <Image h="150px" objectFit="cover" id="emojimage" />
+
+          <Image h="150px" objectFit="cover" id="emojimage"    />
+
+
           {/* <pre className="pose-data" color="white" style={{position: 'fixed', top: '150px', left: '10px'}} >Pose data</pre> */}
         </Container>
 
+
+
         <Stack id="start-button" spacing={4} direction="row" align="center">
+        <Container centerContent>
+            <Heading
+                id = 'cc'
+                style={{
+                    color:"black",
+                    zIndex:10
+                }}>
+
+                {word}
+                
+            </Heading>
+        </Container>
           <Button
             leftIcon={
               camState === "on" ? (
@@ -321,7 +362,8 @@ export default function Level1() {
           >
             Camera
           </Button>
-          <About />
+
+
         </Stack>
       </Box>
     </ChakraProvider>

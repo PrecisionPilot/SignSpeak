@@ -20,7 +20,21 @@ a {
 }
 
 .pabrik-tablist::-webkit-scrollbar {
+  
   display: none;
+}
+
+#cc{
+  
+  background-color: white;
+  color:black;
+  position: fixed;
+
+  padding-left:10%;
+  padding-right:10%;
+
+  padding-top:2%;
+  padding-bottom:2%;
 }
 
 img {
@@ -100,7 +114,7 @@ img {
   text-align: center;
   /* box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2); */
   position: fixed;
-  bottom: 30px;
+  bottom: 250px;
   left: calc(50% - 150px);
   z-index: 10;
 }
