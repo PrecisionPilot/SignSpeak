@@ -50,7 +50,7 @@ export default function Level1(props) {
 
   let gamestate = "started"
 
-  // Runs once
+  // Runs once at the start
   async function runHandpose() {
     const net = await handpose.load()
     _signList(false)
@@ -106,6 +106,7 @@ export default function Level1(props) {
       // Make Detections
       const hand = await net.estimateHands(video)
 
+      // If there is at least one hand
       if (hand.length > 0) {
         //loading the fingerpose model
         const GE = new fp.GestureEstimator([
@@ -137,7 +138,8 @@ export default function Level1(props) {
           Handsigns.ySign,
           Handsigns.zSign,
         ])
-
+        
+        // TODO: What does the 6.5 mean?
         const estimatedGestures = await GE.estimate(hand[0].landmarks, 6.5)
         // document.querySelector('.pose-data').innerHTML =JSON.stringify(estimatedGestures.poseData, null, 2);
 
@@ -146,13 +148,16 @@ export default function Level1(props) {
             "Make a 👍 gesture with your hand to start"
         }
 
+        // When there's a detected gesture
         if (
           estimatedGestures.gestures !== undefined &&
           estimatedGestures.gestures.length > 0
         ) {
+          // Extract the confidence values of each gesture
           const confidence = estimatedGestures.gestures.map(p => p.confidence)
+          // Get index of gesture with highest confidence
           const maxConfidence = confidence.indexOf(
-            Math.max.apply(undefined, confidence)
+            Math.max(...confidence)
           )
 
           //setting up game state, looking for thumb emoji
@@ -160,7 +165,6 @@ export default function Level1(props) {
             estimatedGestures.gestures[maxConfidence].name === "thumbs_up" &&
             gamestate !== "played"
           ) {
-            _signList(false)
             gamestate = "played"
             document.getElementById("emojimage").classList.add("play")
             document.querySelector(".tutor-text").innerText = "make a hand gesture based on letter shown below"
@@ -168,7 +172,7 @@ export default function Level1(props) {
             // While the game is playing
             document.querySelector("#app-title").innerText = ""
 
-            //looping the sign list
+            //looping the sign list, when lesson finished
             if (currentSign === signList.length) {
               currentSign = 0
               //document.querySelector(".tutor-text").innerText = "Congratulations, your completed your first lesson!"
@@ -178,17 +182,6 @@ export default function Level1(props) {
               router.push("/Quiz1")
               return
             }
-
-            //test making words
-            timer++;
-            if(estimatedGestures.gestures[maxConfidence].name!=freeze && timer>10){
-              timer = 0;
-              freeze = estimatedGestures.gestures[maxConfidence].name;
-              word += estimatedGestures.gestures[maxConfidence].name;
-              console.log(word)
-              //if(word matches a word, add a space)
-            }
-            
             
             //game play state
             
