@@ -228,8 +228,11 @@ export default function Level1(props) {
   return (
     <ChakraProvider>
       <Metatags />
+      {/* Background box */}
       <Box bgColor="#5784BA">
+        {/* Container, as a part of ChakraProvider and provides pre-defined witdth and center alignments for children */}
         <Container centerContent maxW="xl" height="100vh" pt="0" pb="0">
+          {/* Vertical stack of children */}
           <VStack spacing={4} align="center">
             <Box h="20px"></Box>
             <Heading

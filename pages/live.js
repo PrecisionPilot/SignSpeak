@@ -98,6 +98,7 @@ export default function Live() {
       // Make Detections
       const hand = await net.estimateHands(video)
 
+      // If hand detected
       if (hand.length > 0) {
         realtimer = 0;
         flag = true;
@@ -145,7 +146,7 @@ export default function Live() {
         ) {
           const confidence = estimatedGestures.gestures.map(p => p.confidence)
           const maxConfidence = confidence.indexOf(
-            Math.max.apply(undefined, confidence)
+            Math.max(...confidence)
           )
 
           //setting up game state, looking for thumb emoji
@@ -161,41 +162,21 @@ export default function Live() {
           } else if (gamestate === "played") {
             document.querySelector("#app-title").innerText = ""
 
-            //looping the sign list
-            if (currentSign === signList.length) {
-              _signList(false)
-              currentSign = 0
-              return
-            }
-
-
-
             //test making words
             timer++;
-            if(estimatedGestures.gestures[maxConfidence].name!=freeze && timer>10){
+            // If the current sign is not the same as previous
+            if (estimatedGestures.gestures[maxConfidence].name != freeze && timer > 10) {
               timer = 0;
               freeze = estimatedGestures.gestures[maxConfidence].name;
               //addWord(word+estimatedGestures.gestures[maxConfidence].name)
-              testWord +=estimatedGestures.gestures[maxConfidence].name;
+              testWord += estimatedGestures.gestures[maxConfidence].name;
               addWord(testWord)
-              console.log(testWord) 
-              /*
-              async () {
-                const url = 'https://api.bing.microsoft.com/'
-                
-                const [word, updatedword] = useState([{}]);
-                const response = await fetch('${url}').then.
-              }
-              */
-              //if(word matches a word, add a space)
+              console.log(testWord)
             }
 
 
-            
-            
-            
             //game play state
-            
+
             if (
               // Check if "signList[currentSign].src.src" is a string literal or string object
               typeof signList[currentSign].src.src === "string" ||
@@ -216,15 +197,18 @@ export default function Live() {
             return
           }
         }
-      } else{
+      }
+      // If no hand detected
+      else {
         console.log('no hands')
         realtimer++;
-        if((realtimer%5==0)&&flag){
-            flag=false;
-            realtimer = 0;
-            console.log('space')
-            testWord += " "
-            addWord(testWord); 
+        // 5 seconds after no hands, add space
+        if ((realtimer % 5 == 0) && flag) {
+          flag = false;
+          realtimer = 0;
+          console.log('space')
+          testWord += " "
+          addWord(testWord);
         }
       }
       // Draw hand lines
@@ -272,7 +256,7 @@ export default function Live() {
             Live translation Model
           </Heading>
 
-          
+
 
           <Box id="webcam-container">
             {/* The camera background */}
@@ -281,7 +265,7 @@ export default function Live() {
             ) : (
               <div id="webcam" background="black"></div>
             )}
-            
+
             {/* Detected Sign letter at the bottom */}
             {sign ? (
               <div
@@ -327,7 +311,7 @@ export default function Live() {
           ></Box>
 
 
-          <Image h="150px" objectFit="cover" id="emojimage" style={{visibility: "hidden"}}   />
+          <Image h="150px" objectFit="cover" id="emojimage" style={{ visibility: "hidden" }} />
 
 
           {/* <pre className="pose-data" color="white" style={{position: 'fixed', top: '150px', left: '10px'}} >Pose data</pre> */}
@@ -336,18 +320,18 @@ export default function Live() {
 
 
         <Stack id="start-button" spacing={4} direction="row" align="center">
-        <Container centerContent>
+          <Container centerContent>
             <Heading
-                id = 'cc'
-                style={{
-                    color:"black",
-                    zIndex:10
-                }}>
+              id='cc'
+              style={{
+                color: "black",
+                zIndex: 10
+              }}>
 
-                {word}
-                
+              {word}
+
             </Heading>
-        </Container>
+          </Container>
 
 
         </Stack>
