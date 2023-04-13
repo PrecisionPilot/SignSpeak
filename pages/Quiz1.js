@@ -180,16 +180,6 @@ export default function Level1(props) {
               window.open(window.location.origin + "/Level2")
               return
             }
-
-            //test making words
-            timer++;
-            if(estimatedGestures.gestures[maxConfidence].name!=freeze && timer>10){
-              timer = 0;
-              freeze = estimatedGestures.gestures[maxConfidence].name;
-              word += estimatedGestures.gestures[maxConfidence].name;
-              console.log(word)
-              //if(word matches a word, add a space)
-            }
             
             
             //game play state
@@ -201,6 +191,7 @@ export default function Level1(props) {
             ) {
               // Change the image of the sign emoji using "signList[currentSign].src.src"
               setTextImage(signList[currentSign].alt)
+              // Print prompted ASL letter
               console.log("signList: " + signList[currentSign].alt)
               console.log("Hello world")
               // If the detected gestures is the same as the displayed sign image
@@ -210,6 +201,7 @@ export default function Level1(props) {
               ) {
                 currentSign++
               }
+              // Set detected sign at the bottom of the screen
               setSign(estimatedGestures.gestures[maxConfidence].name)
             }
           } else if (gamestate === "finished") {

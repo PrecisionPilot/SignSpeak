@@ -199,6 +199,7 @@ export default function Level1(props) {
               ) {
                 currentSign++
               }
+              // Set detected sign at the bottom of the screen
               setSign(estimatedGestures.gestures[maxConfidence].name)
             }
           } else if (gamestate === "finished") {
