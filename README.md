@@ -4,6 +4,9 @@ The Duolingo for ASL (American Sign Language)
 - A simple and accessible learning platform that encourages users to learn and perfect their sign language skills
 - Features bite-sized lessons followed by quizzes to test the user's skills and a live sign-language translation feature
 
+![image](https://github.com/PrecisionPilot/SignSpeak/assets/69162332/4112d2f9-d069-46c8-9ef1-45a567265db5)
+![image](https://github.com/PrecisionPilot/SignSpeak/assets/69162332/0905494d-9040-4fde-8bba-c1eb3b10b7bf)
+
 
 ## Inspiration
 Sign language is a universal language which allows many individuals to exercise their intellect through common communication. Many people around the world suffer from hearing loss and from mutism that needs sign language to communicate. Even those who do not experience these conditions may still require the use of sign language for certain circumstances. We plan to expand our company to be known worldwide to fill the lack of a virtual sign language learning tool that is accessible to everyone, everywhere, for free.
